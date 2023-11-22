@@ -16,7 +16,7 @@ $phoneno = 87654321;
 
 $userid = 1;
 
-$query->bind_param('ss', $email, $password, $username, $firstname, $lastname, $phoneno, $userid); //bind the parameters
+$query->bind_param('sssssss', $email, $password, $username, $firstname, $lastname, $phoneno, $userid); //bind the parameters
 if ($query->execute()){
     echo "Query executed.";
 }else{
