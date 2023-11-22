@@ -5,14 +5,14 @@ $con = mysqli_connect("localhost","root","","phase2"); //connect to database
 if (!$con){
     die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail 
 } 
-$query= $con->prepare("INSERT INTO `user` (`NAME`,`USERNAME`, `PASSWORD`, `ADDRESS`, `EMAIL`,`CONTACT` , `ROLE`) VALUES (?,?,?,?,?,?,?)"); 
-$name='ADMIN USER1'; 
-$pwd = 'admin1pwd'; 
-$address = 'ang mo kio ave 2'; 
-$email = 'admin1@email.com'; 
-$contact = '11223344'; 
-$role = 'ADMIN'; 
-$query->bind_param('sssssss', $name,$name, $pwd, $address, $email,$contact, $role); //bind the parameters 
+$query= $con->prepare("INSERT INTO `user` (`email`, `password`, `username`, `firstname`,`lastname` , `phoneno`) VALUES (?,?,?,?,?,?,?)");  
+$email = 'example@examaple.com'; 
+$password = '123'; 
+$username = 'test user'; 
+$firstname = 'way'; 
+$lastname = 'hng'; 
+$phoneno='12345678';
+$query->bind_param($email,$password, $username, $firstname, $lastname, $phoneno); //bind the parameters 
 if ($query->execute()){ //execute query 
     echo "Query executed."; 
 }else{ 
