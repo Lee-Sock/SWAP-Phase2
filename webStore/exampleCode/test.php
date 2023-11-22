@@ -5,7 +5,7 @@ $con = mysqli_connect("localhost","root","","phase2"); //connect to database
 if (!$con){
     die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail 
 } 
-$query= $con->prepare("INSERT INTO `user` (`userid`, `email`, `password`, `username`, `firstname`,`lastname` , `phoneno`) VALUES (?,?,?,?,?,?,?,?)");  
+$query= $con->prepare("INSERT INTO `user` (`userid`, `email`, `password`, `username`, `firstname`,`lastname` , `phoneno`) VALUES (?,?,?,?,?,?,?)");  
 $userid = '1';
 $email = 'example@examaple.com'; 
 $password = '123'; 
