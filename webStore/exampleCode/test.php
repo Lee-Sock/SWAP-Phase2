@@ -12,7 +12,7 @@ $password = '123';
 $username = 'test user'; 
 $firstname = 'way'; 
 $lastname = 'hng'; 
-$phosCneno=12345678;
+$phoneno=12345678;
 $query->bind_param($userid, $email,$password, $username, $firstname, $lastname, $phoneno); //bind the parameters 
 if ($query->execute()){ //execute query 
     echo "Query executed."; 
