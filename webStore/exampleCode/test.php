@@ -13,7 +13,7 @@ $username = 'test user';
 $firstname = 'way'; 
 $lastname = 'hng'; 
 $phoneno=12345678;
-$query->bind_param($userid, $email,$password, $username, $firstname, $lastname, $phoneno); //bind the parameters 
+$query->bind_param('sssd',$userid, $email,$password, $username, $firstname, $lastname, $phoneno); //bind the parameters 
 if ($query->execute()){ //execute query 
     echo "Query executed."; 
 }else{ 
