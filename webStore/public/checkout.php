@@ -24,7 +24,7 @@ $query= $conn->prepare("SELECT * FROM cartitem WHERE cartid = ?");
 $query->bindValue(1,$cartid); //bind the parameters
 $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
-
+console_log($resultItems);
 ?>
 
 
@@ -63,8 +63,13 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 			<td><?= isset($row['itemquantity']) ? $row['itemquantity'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
-			<td><input type='submit' name ='edit_button' value='edit' class='button' /></td>
-			<td><input type='submit' name ='delete_button' value='delete' class='button' /></td>
+			<td><a href='edit.php?CARTID=<?= $row['id']?>'>Edit</a></td>
+			<td>
+				<form action='<?php echo $_SERVER['PHP_self']; ?>' method='post'>
+					<input type='hidden' name='id' value='<?= isset($row['id']) ? $row['id'] : ''?>' />
+					<input type='submit' name ='delete_button' value='Delete' class='button' />
+				</form>
+			</td>
 		</tr>
 	<?php } ?>
 </table>
