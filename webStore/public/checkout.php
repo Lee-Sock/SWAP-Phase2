@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Webstore show cart page</title>
-</head>
-<body>
+
 <?php
 
 //connect to database
@@ -31,6 +27,13 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 
 ?>
 
+
+<html>
+<head>
+<title>Webstore show cart page</title>
+</head>
+<body>
+
 <!-- DISPLAY CART ITEMS -->
 <table style "margin: 0 auto; text-align: center;" border '1'>
 	<tr>
@@ -40,6 +43,8 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 		<th>itemquantity</th>
 		<th>price</th>
 		<th>description</th>
+		<th>edit</th>
+		<th>delete</th>
 	<tr>
 	<?php foreach ($resultItems as $row) { 
 	    // grabbing all item information
@@ -58,6 +63,8 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 			<td><?= isset($row['itemquantity']) ? $row['itemquantity'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
+			<td><input type='submit' name ='edit_button' value='edit' class='button' /></td>
+			<td><input type='submit' name ='delete_button' value='delete' class='button' /></td>
 		</tr>
 	<?php } ?>
 </table>
