@@ -9,7 +9,7 @@ require_once 'database.php';
 $userid = 1;
 
 //getting cartid
-$query= $conn->prepare("SELECT * FROM cart WHERE userid = ?");
+$query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
 $query->bindValue(1,$userid); //bind the parameters
 $query -> execute();
 $resultCartid = $query->fetchALL();
@@ -20,7 +20,7 @@ foreach ($resultCartid as $row) {
 console_log($cartid);
 
 //getting all items in cart
-$query= $conn->prepare("SELECT * FROM cartitem WHERE cartid = ?");
+$query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");
 $query->bindValue(1,$cartid); //bind the parameters
 $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ console_log($resultItems);
 	<?php foreach ($resultItems as $row) { 
 	    // grabbing all item information
 	    $itemid = $row['itemid'];
-	    $query= $conn->prepare("SELECT * FROM inventory WHERE itemid = ?");
+	    $query= $con->prepare("SELECT * FROM inventory WHERE itemid = ?");
 	    $query->bindValue(1,$itemid); //bind the parameters
 	    $query->execute();
 	    $resultItemsInfo = $query->fetchALL(PDO::FETCH_ASSOC);

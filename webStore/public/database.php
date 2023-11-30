@@ -4,9 +4,9 @@ $db_user = "root";
 $db_pass = "";
 $db_name = "phase2";
 
-$conn = new PDO("mysql:host=$hostName;dbname=$db_name",$db_user,$db_pass); //connect to database
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if (!$conn) {
+$con = new PDO("mysql:host=$hostName;dbname=$db_name",$db_user,$db_pass); //connect to database
+$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if (!$con) {
     die("Something went wrong;");
 }
 

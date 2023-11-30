@@ -7,7 +7,7 @@ require_once 'database.php';
 $cartid = isset($_GET['id']) ? $_GET['id'] : null;
     
 // Fetch the item details from the database for the specified ID    
-$query = $conn->prepare("SELECT * FROM cartitem WHERE ITEM_ID = ?");
+$query = $con->prepare("SELECT * FROM cartitem WHERE ITEM_ID = ?");
 $query->execute([$cartid]);    
 $itemDetails = $query->fetch(PDO::FETCH_ASSOC);
     
@@ -15,7 +15,7 @@ $itemDetails = $query->fetch(PDO::FETCH_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_button'])) {              
     $newQuantity = $_POST['quantity'];        
     // Update the item details in the database        
-    $updateQuery = $conn->prepare("UPDATE cartitem SET itemquantity = ?, WHERE id = ?");     
+    $updateQuery = $con->prepare("UPDATE cartitem SET itemquantity = ?, WHERE id = ?");     
     $updateQuery->execute([$newQuantity, $cartid]);
         
     // Redirect to index.php after updating        
