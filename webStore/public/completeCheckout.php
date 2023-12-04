@@ -26,12 +26,17 @@ $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 console_log($resultItems);
 
+//get shipping information
+$query= $con->prepare("SELECT * FROM shippinginfo WHERE userid = ?");
+$query->bindValue(1,$userid); //bind the parameters
+$query -> execute();
+$resultShippingInfo = $query->fetchALL();
 ?>
 
 
 <html>
 <head>
-<title>Webstore show cart page</title>
+<title>Webstore finalize checkout</title>
 </head>
 <body>
 
@@ -44,8 +49,6 @@ console_log($resultItems);
 		<th>itemquantity</th>
 		<th>price</th>
 		<th>description</th>
-		<th>edit</th>
-		<th>delete</th>
 	<tr>
 	<?php foreach ($resultItems as $row) { 
 	    // grabbing all item information
@@ -65,18 +68,22 @@ console_log($resultItems);
 			<td><?= isset($row['itemquantity']) ? $row['itemquantity'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
-			<td><a href='editCart.php?ID=<?= $row['id']?>'>Edit</a></td>
-			<td>
-				<form action='<?php echo $_SERVER['PHP_self']; ?>' method='post'>
-					<input type='hidden' name='id' value='<?= isset($row['id']) ? $row['id'] : ''?>' />
-					<input type='button' name ='delete_button' value='Delete' class='button' onclick="location.href='deleteCartItem.php?ID=<?= $row['id']?>';" />
-				</form>
-			</td>
 		</tr>
 	<?php } ?>
 </table>
 
-<input type='button' name ='finishCheckout' value='Finalize Order' class='button' onclick="location.href='checkCart.php?>';" />		
+<p>
+Address: <?= isset($resultShippingInfo['address']) ? $resultShippingInfo['address'] : 'N/A' ?><br>
+Card Number: <?= isset($resultShippingInfo['cardnumber']) ? $resultShippingInfo['cardnumber'] : 'N/A' ?><br>
+Expiry: <?= isset($resultShippingInfo['expiry']) ? $resultShippingInfo['expiry'] : 'N/A' ?><br>
+CVC: <?= isset($resultShippingInfo['cvc']) ? $resultShippingInfo['cvc'] : 'N/A' ?><br>
+</p>
+<?php if ($resultShippingInfo !== null) { ?>
+	<input type='button' name ='addShipping' value='Please add Shipping Info' class='button' onclick="location.href='shippinginfoform.php?>';" />		
+<?php } else {?>
+	<input type='button' name ='emptycart' value='Finish Checkout' class='button' onclick="location.href='endCheckout.php?>';" />
+<?php }?>
+
 
 
 </body>
