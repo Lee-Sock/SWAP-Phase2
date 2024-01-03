@@ -3,10 +3,10 @@
 <?php
 
 //connect to database
-require_once 'database.php';
+require_once "config.php";
+require_once 'index1.php';
 
-//get userid
-$userid = 1;
+$useridToRetrieve = $userid;
 
 //getting cartid
 $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
@@ -17,14 +17,12 @@ $resultCartid = $query->fetchALL();
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
 };
-console_log($cartid);
 
 //getting all items in cart
 $query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");
 $query->bindValue(1,$cartid); //bind the parameters
 $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
-console_log($resultItems);
 
 ?>
 
@@ -54,8 +52,6 @@ console_log($resultItems);
 	    $query->bindValue(1,$itemid); //bind the parameters
 	    $query->execute();
 	    $resultItemsInfo = $query->fetchALL(PDO::FETCH_ASSOC);
-	    console_log($resultItemsInfo);
-	    console_log($row)
 	    ?>
 		
 		<tr>
@@ -66,12 +62,7 @@ console_log($resultItems);
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
 			<td><a href='editCart.php?ID=<?= $row['id']?>'>Edit</a></td>
-			<td>
-				<form action='<?php echo $_SERVER['PHP_self']; ?>' method='post'>
-					<input type='hidden' name='id' value='<?= isset($row['id']) ? $row['id'] : ''?>' />
-					<input type='button' name ='delete_button' value='Delete' class='button' onclick="location.href='deleteCartItem.php?ID=<?= $row['id']?>';" />
-				</form>
-			</td>
+			<td><a href='deleteCartItem.php?ID=<?= $row['id']?>'>delete</a></td>
 		</tr>
 	<?php } ?>
 </table>

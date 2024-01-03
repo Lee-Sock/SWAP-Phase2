@@ -1,7 +1,8 @@
 <?php
 
 //connect to database
-require_once 'database.php';
+require_once "config.php";
+require_once 'index1.php';
 
 // Get the item ID from the URL parameter
 $id = isset($_GET['ID']) ? $_GET['ID'] : null;

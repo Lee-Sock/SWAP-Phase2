@@ -3,10 +3,8 @@
 <?php
 
 //connect to database
-require_once 'database.php';
-
-//get userid
-$userid = 1;
+require_once "config.php";
+require_once 'index1.php';
 
 //getting cartid
 $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
@@ -17,14 +15,12 @@ $resultCartid = $query->fetchALL();
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
 };
-console_log($cartid);
 
 //getting all items in cart
 $query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");
 $query->bindValue(1,$cartid); //bind the parameters
 $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
-console_log($resultItems);
 
 //checking if items are too many
 foreach ($resultItems as $row) {
@@ -32,8 +28,6 @@ foreach ($resultItems as $row) {
     $query->bindValue(1,$row['itemid']); //bind the parameters
     $query->execute();
     $maxQuantity = $query->fetchAll();
-    console_log($row['itemid']);
-    console_log($maxQuantity);
     if ($row['itemquantity'] > $maxQuantity[0]['quantity']){
         header("Location: checkout.php");
         ?>

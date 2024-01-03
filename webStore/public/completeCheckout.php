@@ -3,12 +3,12 @@
 <?php
 
 //connect to database
-require_once 'database.php';
+require_once "config.php";
+require_once 'index1.php';
 
-//get userid
-$userid = 1;
+$useridToRetrieve =$userid;
 
-//getting cartid
+//getting c;artid
 $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
 $query->bindValue(1,$userid); //bind the parameters
 $query -> execute();
@@ -17,14 +17,12 @@ $resultCartid = $query->fetchALL();
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
 };
-console_log($cartid);
 
 //getting all items in cart
 $query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");
 $query->bindValue(1,$cartid); //bind the parameters
 $query->execute();
 $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
-console_log($resultItems);
 
 //get shipping information
 $query= $con->prepare("SELECT * FROM shippinginfo WHERE userid = ?");
@@ -57,8 +55,6 @@ $resultShippingInfo = $query->fetchALL();
 	    $query->bindValue(1,$itemid); //bind the parameters
 	    $query->execute();
 	    $resultItemsInfo = $query->fetchALL(PDO::FETCH_ASSOC);
-	    console_log($resultItemsInfo);
-	    console_log($row)
 	    ?>
 		
 		<tr>
@@ -73,15 +69,16 @@ $resultShippingInfo = $query->fetchALL();
 </table>
 
 <p>
-Address: <?= isset($resultShippingInfo['address']) ? $resultShippingInfo['address'] : 'N/A' ?><br>
-Card Number: <?= isset($resultShippingInfo['cardnumber']) ? $resultShippingInfo['cardnumber'] : 'N/A' ?><br>
-Expiry: <?= isset($resultShippingInfo['expiry']) ? $resultShippingInfo['expiry'] : 'N/A' ?><br>
-CVC: <?= isset($resultShippingInfo['cvc']) ? $resultShippingInfo['cvc'] : 'N/A' ?><br>
+Address: <?= isset($resultShippingInfo[0]['address']) ? $resultShippingInfo[0]['address'] : 'N/A' ?><br>
+Card Number: <?= isset($resultShippingInfo[0]['cardnumber']) ? $resultShippingInfo[0]['cardnumber'] : 'N/A' ?><br>
+Expiry: <?= isset($resultShippingInfo[0]['expiry']) ? $resultShippingInfo[0]['expiry'] : 'N/A' ?><br>
+CVC: <?= isset($resultShippingInfo[0]['cvc']) ? $resultShippingInfo[0]['cvc'] : 'N/A' ?><br>
 </p>
-<?php if ($resultShippingInfo !== null) { ?>
+<?php if ($resultShippingInfo == null) { ?>
 	<input type='button' name ='addShipping' value='Please add Shipping Info' class='button' onclick="location.href='shippinginfoform.php?>';" />		
 <?php } else {?>
-	<input type='button' name ='emptycart' value='Finish Checkout' class='button' onclick="location.href='endCheckout.php?>';" />
+	<input type='button' name ='changeShipping' value='Update Shipping info' class='button' onclick="location.href='updateshippinginfoform.php?>';" />
+	<input type='button' name ='emptycart' value='Finish Checkout' class='button' onclick="location.href='donecheckout.php?>';" />
 <?php }?>
 
 
