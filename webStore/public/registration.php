@@ -16,6 +16,19 @@ if(isset($_POST["submit"])){
     else{
         $query = "INSERT INTO user VALUES('', '$email','$password','$username','$firstname','$lastname','$phoneno')";
         mysqli_query($conn,$query);
+        $query2 = $con->prepare("SELECT * FROM user WHERE username = ?");
+        $query2 ->bindValue(1,$username); //bind the parameters
+        $query2 -> execute();
+        $resultUserid = $query2->fetchALL();
+        foreach ($resultUserid as $row){
+            $query3= $conn->prepare("INSERT INTO `cart` (`cartid`, `userid`) VALUES (?,?)");
+            $query3->bind_param('ss',$row["userid"], $row["userid"]); //bind the parameters
+            if ($query3->execute()){ //execute query
+                echo "Query executed.";
+            }else{
+                echo "Error executing query.";
+            }
+        }
         echo 
         "<script> alert('Registration Successful'); </script>";
         
