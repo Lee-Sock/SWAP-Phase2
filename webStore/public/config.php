@@ -4,9 +4,9 @@ $db_username = "root";
 $db_password = "";
 $db_database = "phase2";
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+// if (!isset($_SESSION)) {
+//     session_start();
+// }
 
 
 //session_start();

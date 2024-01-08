@@ -1,5 +1,10 @@
 <?php 
 require 'config.php';
+
+if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
+    header("Location: addtocart.php");
+    exit();
+}
 if(isset($_POST["submit"])){
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
@@ -44,6 +49,7 @@ if(isset($_POST["submit"])){
 	<head>
 		<meta charset="utf-8">
 		<title>Registration</title>
+		
 	</head>
 	<body>
 		<h1>Registraton</h1>

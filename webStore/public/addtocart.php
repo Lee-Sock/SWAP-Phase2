@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'index1.php';
 
+
 // Handle form submission
 $message = ''; // Initialize an empty message variable
 
