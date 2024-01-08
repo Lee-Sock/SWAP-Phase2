@@ -4,7 +4,7 @@
 
 //connect to database
 require_once "config.php";
-require_once 'index2.php';
+// require_once 'index2.php';
 
 //getting Inventory
 $query= $con->prepare("SELECT * FROM inventory");
@@ -42,7 +42,14 @@ $resultInventory = $query->fetchALL();
 			<td><?= isset($row['price']) ? $row['price'] : '' ?></td>
 			<td><?= isset($row['quantity']) ? $row['quantity'] : '' ?></td>
 			<td><?= isset($row['description']) ? $row['description'] : '' ?></td>
-			<td><?= isset($row['picture']) ? $row['picture'] : '' ?></td>
+			
+			<td>
+                <?php
+                // Assuming the 'picture' column contains the path or URL to the image
+                $picture = isset($row['picture']) ? $row['picture'] : '';
+                echo "<img src='$picture' alt='picture' style='width: 50px; height: 50px;'>";
+                ?>
+            </td>
 			<td><a href='adminEditInventory.php?ID=<?= $row['itemid']?>'>Edit</a></td>
 			<td><a href='adminDeleteInventory.php?ID=<?= $row['itemid']?>'>Delete</a></td>
 		</tr>
