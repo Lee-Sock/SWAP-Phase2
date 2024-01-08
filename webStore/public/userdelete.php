@@ -1,6 +1,7 @@
 <?php
 require_once "deleteuser.php";
 require_once "config.php";
+require_once "index2.php";
 
 $userid=$_POST['userid'];
 
@@ -58,6 +59,8 @@ if (mysqli_num_rows($result) > 0) {
     </style>
 </head>
 <body>
+<br>
+<br>
     <b>Delete user</b><br>
     <form action="" method="post">
         User ID: <input type="text" name="userid"><br>

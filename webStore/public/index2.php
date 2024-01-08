@@ -33,6 +33,14 @@ echo $js_code;
 	<body>
 		<h1> Welcome <?php echo $row["adminId"];?> </h1>
 		<a href="logout.php">Logout</a>
+		<br>
+		<br>
+		<a href='adminInventory.php'>Manage Inventory</a>
+		<br>
+		<br>
+		<a href='userdelete.php'>Delete Users</a>
+		<br>
+		<br>
 	</body>
 
 

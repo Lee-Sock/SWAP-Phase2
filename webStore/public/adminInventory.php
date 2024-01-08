@@ -49,7 +49,7 @@ $resultInventory = $query->fetchALL();
 	<?php } ?>
 </table>
 
-<a href='adminAddInventory.php>'>Add</a>
+<a href='adminAddInventory.php'>Add</a>
 
 
 </body>
