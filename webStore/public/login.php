@@ -1,6 +1,8 @@
 <?php 
+session_start();
 require 'config.php';
 if(isset($_POST["submit"])){
+    
     $usernameemail = $_POST["usernameemail"];
     $password = $_POST["password"];
     $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$usernameemail' OR email = '$usernameemail'");
