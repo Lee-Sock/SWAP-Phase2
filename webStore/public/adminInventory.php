@@ -43,8 +43,8 @@ $resultInventory = $query->fetchALL();
 			<td><?= isset($row['quantity']) ? $row['quantity'] : '' ?></td>
 			<td><?= isset($row['description']) ? $row['description'] : '' ?></td>
 			<td><?= isset($row['picture']) ? $row['picture'] : '' ?></td>
-			<td><a href='adminEditInventory.php?ID=<?= $row['id']?>'>Edit</a></td>
-			<td><a href='adminDeleteInventory.php?ID=<?= $row['id']?>'>Delete</a></td>
+			<td><a href='adminEditInventory.php?ID=<?= $row['itemid']?>'>Edit</a></td>
+			<td><a href='adminDeleteInventory.php?ID=<?= $row['itemid']?>'>Delete</a></td>
 		</tr>
 	<?php } ?>
 </table>
