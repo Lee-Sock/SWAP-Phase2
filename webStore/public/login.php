@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
             $_SESSION["login"] = true;
             $_SESSION["userid"] = $row["userid"];
             // Redirect only after successful login
-            header("Location: addtocart.php");
+            header("Location: usermain.php");
             exit();
         } else {
             echo "<script> alert('Wrong Password'); </script>";
