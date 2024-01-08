@@ -4,7 +4,12 @@ $db_username = "root";
 $db_password = "";
 $db_database = "phase2";
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+
+//session_start();
 $conn = mysqli_connect("localhost", "root", "", "phase2");
 
 $con = new PDO("mysql:host=$db_hostname;dbname=$db_database","root",""); //connect to database
