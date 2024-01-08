@@ -5,7 +5,7 @@ if(isset($_POST["submit"])){
     $lastname = $_POST["lastname"];
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $phoneno = $_POST["phoneno"];
     $duplicate = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' OR email = '$email' OR phoneno = '$phoneno'");
     if (mysqli_num_rows($duplicate) > 0) {
