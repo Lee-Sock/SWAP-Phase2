@@ -1,6 +1,7 @@
 <?php
 require_once "index1.php";
 require_once "adminInventory.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -16,3 +17,4 @@ require_once "adminInventory.php";
 
 
 <!-- </html> -->
+
