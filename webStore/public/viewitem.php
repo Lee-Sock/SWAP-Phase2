@@ -11,6 +11,11 @@ $result = $query->fetchALL(PDO::FETCH_ASSOC);
 ?>
 
 <table style "margin: 0 auto; text-align: center;" border '1'>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 	<tr>
 		<th>itemid</th>
 		<th>itemname</th>

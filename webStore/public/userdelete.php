@@ -49,6 +49,10 @@ if (mysqli_num_rows($result) > 0) {
 
 <html>
 <head>
+
+<link rel="stylesheet" href="styles.css">
+
+
     <style>
     form {
         width: 25%;

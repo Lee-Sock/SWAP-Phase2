@@ -18,6 +18,12 @@ $resultInventory = $query->fetchALL();
 
 <html>
 <head>
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 <title>Webstore Shopping page</title>
 </head>
 <body>

@@ -1,4 +1,9 @@
 <html>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 <head>
     <style>
     form {

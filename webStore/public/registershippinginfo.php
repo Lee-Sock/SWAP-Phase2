@@ -1,4 +1,8 @@
 <html>
+
+<link rel="stylesheet" href="styles.css">
+
+
 <body>
 <?php
 require_once "addshippinginfo.php";

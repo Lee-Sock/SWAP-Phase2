@@ -13,3 +13,16 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 // Rest of your secured page logic here
 ?>
 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+</body>
+
+
+</html>
