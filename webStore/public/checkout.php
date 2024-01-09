@@ -30,7 +30,10 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 <html>
 <head>
 <title>Webstore show cart page</title>
-</head>
+
+<link rel="stylesheet" href="styles.css">
+
+
 <body>
 
 <!-- DISPLAY CART ITEMS -->

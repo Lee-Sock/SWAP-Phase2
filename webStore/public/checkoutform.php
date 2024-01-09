@@ -59,6 +59,12 @@ mysqli_close($con);
 
 ?>
 
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 <h1>Shopping Cart</h1>
 
 <!-- Display cart items -->

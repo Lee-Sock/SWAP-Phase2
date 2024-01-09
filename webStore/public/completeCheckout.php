@@ -34,6 +34,11 @@ $resultShippingInfo = $query->fetchALL();
 
 <html>
 <head>
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 <title>Webstore finalize checkout</title>
 </head>
 <body>

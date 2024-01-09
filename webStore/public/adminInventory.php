@@ -17,7 +17,12 @@ $resultInventory = $query->fetchALL();
 
 
 <html>
+
 <head>
+
+<link rel="stylesheet" href="styles.css">
+
+
 <title>Webstore Inventory Adminpage</title>
 </head>
 <body>
