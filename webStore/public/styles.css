@@ -1,0 +1,18 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f0f0 url(/finalphase2/SWAP-Phase2/webStore/public/inventoryimages/background3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Add more styles as needed */
