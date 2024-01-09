@@ -4,14 +4,23 @@
 
 //connect to database
 require_once "config.php";
-// require_once 'index2.php';
+require_once 'index1.php';
 
 //getting Inventory
 $query= $con->prepare("SELECT * FROM inventory");
 $query -> execute();
 $resultInventory = $query->fetchALL();
 
-//getting all items in cart
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
+    $id = $_POST['add_button'];
+    $amount = $_POST[$id];
+    
+    console_log($id);
+    console_log($amount);
+   
+    header("Location: userInventoryToCart.php?ID=$id&AMOUNT=$amount");
+}
+
 
 ?>
 
@@ -23,6 +32,7 @@ $resultInventory = $query->fetchALL();
 <body>
 
 <!-- DISPLAY CART ITEMS -->
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <table style "margin: 0 auto; text-align: center;" border '1'>
 	<tr>
 		<th>itemid</th>
@@ -51,15 +61,16 @@ $resultInventory = $query->fetchALL();
                 ?>
             </td>
             <td>
-            <label for="name"></label>
-			<input id ="p" type="text" name="name" value="" required>
+            <label for="amount"></label>
+			<input id ="p" type="text" name="<?= isset($row['itemid']) ? $row['itemid'] : '' ?>" value="">
             </td>
             <td>
-            <a href="addtocart.php">Add to cart</a>
+            <input type="submit" name="add_button" value="<?= $row['itemid']?>">
+            
             </td>
 		</tr>
 	<?php } ?>
 </table>
-
+</form>
 </body>
 </html>
