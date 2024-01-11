@@ -10,6 +10,7 @@ require_once 'index1.php';
 $query= $con->prepare("SELECT * FROM inventory");
 $query -> execute();
 $resultInventory = $query->fetchALL();
+$success = isset($_GET['SUCCESS']) ? $_GET['SUCCESS'] : null;;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
     $id = $_POST['add_button'];
@@ -20,6 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
    
     header("Location: userInventoryToCart.php?ID=$id&AMOUNT=$amount");
 }
+
+if ($success == "1"){
+    echo "<script> alert ('Item added'); </script>";
+}
+
 
 
 ?>
@@ -77,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
 		</tr>
 	<?php } ?>
 </table>
+<a href='checkout.php'>checkout</a>
 </form>
 </body>
 </html>

@@ -34,6 +34,6 @@ if ($checkIfExists->rowCount() > 0) {
     }
 }
 
-header("Location: userInventory.php")
+header("Location: userInventory.php?SUCCESS=1")
 
 ?>
