@@ -32,14 +32,14 @@
     }
 
     .topnav a:hover {
-        background-color: red;
+        background-color: #fff;
         color: black;
     }
 
     /* Add a common style for all navigation links */
     .topnav a, .welcome a {
         text-decoration: none;
-        color: #333; /* Change the color to your preference */
+        color: white; /* Change the color to your preference */
         font-size: 16px; /* Change the font size to your preference */
         font-family: Arial, sans-serif; /* Change the font family to your preference */
         padding: 15px; /* Adjust the padding as needed */
@@ -58,8 +58,8 @@
 <nav class="topnav">
     <a href="usermain.php">Home</a>
     <a href="#about">About</a>
-    <a href="#services">Services</a>
     <a href="checkcart.php">Cart</a>
+    <a href="checkout.php">checkout</a>
     <?php if (isset($row["username"])): ?>
         <div class="welcome">
             Welcome, <?php echo $row["username"];?>

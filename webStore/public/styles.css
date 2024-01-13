@@ -37,8 +37,9 @@
 
 /*.content {*/
 /*    padding: 20px;*/
-/*}*/
-
+ 
+    
+    
 
 body {
     font-family: 'Arial', sans-serif;
@@ -55,5 +56,42 @@ h1 {
 .container {
     width: 80%;
     margin: 0 auto;
+}
+
+.topnav {
+    background-color: #333; /* Set a background color for the top nav */
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a common style for all navigation links */
+.topnav a, .welcome a {
+    text-decoration: none;
+    color: white; /* Change the color to your preference */
+    font-size: 16px; /* Change the font size to your preference */
+    font-family: Arial, sans-serif; /* Change the font family to your preference */
+    padding: 15px; /* Adjust the padding as needed */
+    display: inline-block;
+}
+
+/* Style the "Welcome" section */
+.welcome {
+    float: right;
+    display: inline-block;
+    padding: 15px; /* Adjust the padding as needed */
+    color:violet ;
 }
 

@@ -70,7 +70,11 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 	<?php } ?>
 </table>
 
-<input type='button' name ='finishCheckout' value='Finalize Order' class='button' onclick="location.href='checkCart.php?>';" />		
+<input type='button' name='finishCheckout' value='Finalize Order' class='button' onclick="location.href='checkCart.php';" />
+
+
+
+
 
 
 </body>
