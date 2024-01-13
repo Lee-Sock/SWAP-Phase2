@@ -1,6 +1,7 @@
 <?php
 require_once "index1.php";
 require_once "userInventory.php";
+require_once "navbar.php";
 
 ?>
 

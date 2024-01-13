@@ -25,6 +25,9 @@ if (isset($_POST["submit"])) {
             exit();
         } else {
             echo "<script> alert('Wrong Password'); </script>";
+            echo "<script> alert('$password'); </script>";
+            $new = $row["password"];
+            echo "<script> alert('$new'); </script>";
         }
     } else {
         echo "<script> alert ('User Not Registered'); </script>";

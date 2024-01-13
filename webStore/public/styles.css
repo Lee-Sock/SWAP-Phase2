@@ -1,9 +1,51 @@
-/* styles.css */
+ styles.css 
+/*body {*/
+/*    font-family: 'Arial', sans-serif;*/
+/*    background: #f0f0f0 url(/finalphase2/SWAP-Phase2/webStore/public/inventoryimages/background3.jpg) no-repeat center center fixed;*/
+/*    background-size: cover;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*h1 {*/
+/*    color: #333;*/
+/*}*/
+
+/*.container {*/
+/*    width: 80%;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.topnav {*/
+/*    background-color: #333;  Set a background color for the top nav */
+/*    overflow: hidden;*/
+/*}*/
+
+/*.topnav a {*/
+/*    float: left;*/
+/*    display: block;*/
+/*    color: #f2f2f2;*/
+/*    text-align: center;*/
+/*    padding: 14px 16px;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.topnav a:hover {*/
+/*    background-color: #ddd;*/
+/*    color: black;*/
+/*}*/
+
+/*.content {*/
+/*    padding: 20px;*/
+/*}*/
+
 
 body {
     font-family: 'Arial', sans-serif;
     background: #f0f0f0 url(/finalphase2/SWAP-Phase2/webStore/public/inventoryimages/background3.jpg) no-repeat center center fixed;
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -15,4 +57,3 @@ h1 {
     margin: 0 auto;
 }
 
-/* Add more styles as needed */

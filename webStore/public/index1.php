@@ -1,3 +1,5 @@
+
+
 <?php
 require 'config.php';
 
@@ -19,29 +21,31 @@ if (!empty($_SESSION["userid"])) {
 }
 
 function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-    ');';
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
     if ($with_script_tags) {
         $js_code = '<script>' . $js_code . '</script>';
     }
     echo $js_code;
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>Index</title>
-	</head>
-	<body>
-		<h1> Welcome <?php echo $row["username"];?> </h1>
-		<a href="logout.php">Logout</a>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <!-- Include your CSS file here -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+<?php include('navbar.php'); ?>
 
+<!-- Your existing HTML content goes here -->
 
-
+</body>
 </html>
+
+
+
+
