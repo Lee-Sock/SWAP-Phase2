@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 08:39 AM
+-- Generation Time: Jan 15, 2024 at 02:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,8 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `phase 2 db`
+-- Database: `phase2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `adminId` int(10) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`adminId`, `password`) VALUES
+(1, '1');
 
 -- --------------------------------------------------------
 
@@ -32,6 +50,18 @@ CREATE TABLE `cart` (
   `userid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cartid`, `userid`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(6, 6),
+(7, 7),
+(8, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -39,10 +69,19 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `cartitem` (
+  `id` int(11) NOT NULL,
   `cartid` int(10) NOT NULL,
   `itemid` int(10) NOT NULL,
   `itemquantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cartitem`
+--
+
+INSERT INTO `cartitem` (`id`, `cartid`, `itemid`, `itemquantity`) VALUES
+(1, 1, 1, 9),
+(4, 8, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -59,6 +98,14 @@ CREATE TABLE `inventory` (
   `picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`itemid`, `itemname`, `price`, `quantity`, `description`, `picture`) VALUES
+(2, 'Test2', 200, 999, 'Item 2', '/SWAP-Phase2/webStore/public/inventoryimages/cpu.jpg'),
+(3, 'new', 3000, 1, 'descript', '/SWAP-Phase2/webStore/public/inventoryimages/harddisk.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +121,14 @@ CREATE TABLE `shippinginfo` (
   `cvc` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `shippinginfo`
+--
+
+INSERT INTO `shippinginfo` (`shippingid`, `userid`, `address`, `cardnumber`, `expiry`, `cvc`) VALUES
+(1, 1, '123', 123123, 123, 123),
+(6, 2, 'uyb', 87, 65, 75);
+
 -- --------------------------------------------------------
 
 --
@@ -83,7 +138,7 @@ CREATE TABLE `shippinginfo` (
 CREATE TABLE `user` (
   `userid` int(10) NOT NULL,
   `email` varchar(80) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `username` varchar(50) NOT NULL,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
@@ -91,8 +146,22 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userid`, `email`, `password`, `username`, `firstname`, `lastname`, `phoneno`) VALUES
+(7, '9@9.com', '$2y$10$x3mswFkL6jhcrBbKXoteBOUuPQXeM4OleJzK4tDRLBaDoa1.Z2W2a', '9', 'lee', 'geng', 99999999),
+(8, '5@gmail.com', '$2y$10$78k4BZWuPFDwmPLuE8ywJO4miqMzPTHsNgzgt6c0STUI61GsaP4He', 'user1', 'lee', 'geng', 2);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminId`);
 
 --
 -- Indexes for table `cart`
@@ -105,8 +174,8 @@ ALTER TABLE `cart`
 -- Indexes for table `cartitem`
 --
 ALTER TABLE `cartitem`
-  ADD UNIQUE KEY `cartid` (`cartid`),
-  ADD UNIQUE KEY `itemid` (`itemid`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `inventory`
@@ -132,28 +201,40 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `cartitem`
+--
+ALTER TABLE `cartitem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `itemid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `itemid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shippinginfo`
 --
 ALTER TABLE `shippinginfo`
-  MODIFY `shippingid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `shippingid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
