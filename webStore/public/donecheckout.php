@@ -44,7 +44,7 @@ foreach ($resultItems as $item) {
     
 }
 // Redirect back to index.php
-header('Location: checkout.php');
+header('Location: userInventory.php?DELETE=1');
 exit;
 ?>
 

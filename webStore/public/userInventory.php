@@ -10,7 +10,8 @@ require_once 'index1.php';
 $query= $con->prepare("SELECT * FROM inventory");
 $query -> execute();
 $resultInventory = $query->fetchALL();
-$success = isset($_GET['SUCCESS']) ? $_GET['SUCCESS'] : null;;
+$success = isset($_GET['SUCCESS']) ? $_GET['SUCCESS'] : null;
+$delete = isset($_GET['DELETE']) ? $_GET['DELETE'] : null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
     $id = $_POST['add_button'];
@@ -24,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_button'])) {
 
 if ($success == "1"){
     echo "<script> alert ('Item added'); </script>";
+}
+
+if ($delete == "1"){
+    echo "<script> alert ('CHECKOUT COMPLETED'); </script>";
 }
 
 
