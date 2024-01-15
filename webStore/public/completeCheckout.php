@@ -13,10 +13,9 @@ $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
 $query->bindValue(1,$userid); //bind the parameters
 $query -> execute();
 $resultCartid = $query->fetchALL();
-//$cartid = $resultCartid['cartid'] ;
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
-};
+}
 
 //getting all items in cart
 $query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");
@@ -54,7 +53,7 @@ $resultShippingInfo = $query->fetchALL();
 		<th>picture</th>
 		<th>description</th>
 	<tr>
-	<?php foreach ($resultItems as $row) { 
+	<?php foreach ($resultItems as $row) {
 	    // grabbing all item information
 	    $itemid = $row['itemid'];
 	    $query= $con->prepare("SELECT * FROM inventory WHERE itemid = ?");
@@ -88,7 +87,7 @@ Expiry: <?= isset($resultShippingInfo[0]['expiry']) ? $resultShippingInfo[0]['ex
 CVC: <?= isset($resultShippingInfo[0]['cvc']) ? $resultShippingInfo[0]['cvc'] : 'N/A' ?><br>
 </p>
 <?php if ($resultShippingInfo == null) { ?>
-	<input type='button' name ='addShipping' value='Please add Shipping Info' class='button' onclick="location.href='shippinginfoform.php?>';" />		
+	<input type='button' name ='addShipping' value='Please add Shipping Info' class='button' onclick="location.href='shippinginfoform.php?>';" />
 <?php } else {?>
 	<input type='button' name ='changeShipping' value='Update Shipping info' class='button' onclick="location.href='updateshippinginfoform.php?>';" />
 	<input type='button' name ='emptycart' value='Finish Checkout' class='button' onclick="location.href='donecheckout.php?>';" />

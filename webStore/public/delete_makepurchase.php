@@ -1,6 +1,6 @@
 <?php
 // Database connection parameters
-//$servername = "localhost"; 
+//$servername = "localhost";\
 //$dbname = "phase2";
 require_once 'addtocart.php';
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Delete the item from the cart
     $sql_delete = "DELETE FROM cart WHERE itemid = $item_id_to_delete";
     
-    if ($conn->query($sql_delete === TRUE)) {
+    if ($conn->query($sql_delete === true)) {
         echo "Item deleted successfully.";
     } else {
         echo "Error deleting item: " . $conn->error;

@@ -13,7 +13,7 @@ $query->bind_param('s', $userid); //bind the parameters
 if ($query->execute()){
     echo "Query executed.";
 }else{
-    echo "Error executing query."; 
+    echo "Error executing query.";
 }
 ?>
 </body>

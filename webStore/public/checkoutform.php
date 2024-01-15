@@ -88,7 +88,7 @@ mysqli_close($con);
 	</form>
 <form action="updateshippinginfoform.php" method="post">
         <button type="submit" name="updateshippinginfo">Update Shipping Information</button>
-    </form>     
+    </form>
 
 </body>
 </html>

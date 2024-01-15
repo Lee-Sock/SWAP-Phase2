@@ -4,7 +4,7 @@
 
 //connect to database
 require_once "config.php";
-// require_once 'index2.php';
+require_once 'index2.php';
 
 //getting Inventory
 $query= $con->prepare("SELECT * FROM inventory");
@@ -65,4 +65,5 @@ $resultInventory = $query->fetchALL();
 
 
 </body>
+
 </html>

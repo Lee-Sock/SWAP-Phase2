@@ -10,7 +10,7 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
     function printerror($message, $con){
         echo "<pre>";
         echo "$message<br>";
-        if ($con) echo "FAILED: ". mysqli_error($con). "<br>";
+        if ($con){ echo "FAILED: ". mysqli_error($con). "<br>"; }
         echo "</pre>";
     }
 
@@ -32,14 +32,14 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
         printerror("Connecting to $db_hostname", $con);
         die();
     }
-    else printok("Connecting to $db_hostname");
+    else { printok("Connecting to $db_hostname");}
 
     $result=mysqli_select_db($con, $db_database);
     if (!$result) {
         printerror("Selecting $db_database",$con);
         die();
     }
-    else printok("Selecting $db_database");
+    else { printok("Selecting $db_database"); }
 
     $userQuery = "SELECT userid FROM user WHERE userid = $useridToRetrieve";
     $userResult = mysqli_query($con, $userQuery);
@@ -50,14 +50,14 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
         die();
     }
 
-    $query="INSERT INTO shippinginfo (userid,address,cardnumber,expiry,cvc) 
+    $query="INSERT INTO shippinginfo (userid,address,cardnumber,expiry,cvc)
         VALUES ('$useridToRetrieve', '$address', '$cardnumber', '$expiry', '$cvc')";
     $result=mysqli_query($con,$query);
     if (!$result) {
         printerror("Selecting $db_database",$con);
         die();
     }
-    else printok($query);
+    else { printok($query); }
 
     mysqli_close($con);
     printok("Closing connection");
@@ -69,7 +69,9 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
+
+<title> add shipping </title>
+
 <meta charset="utf-8">
 <link rel="stylesheet" href="styles.css">
 

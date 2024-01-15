@@ -20,6 +20,9 @@ header("Location: adminInventory.php");
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+
+<title>admin delete</title>
+
 <meta charset="utf-8">
 <link rel="stylesheet" href="styles.css">
 

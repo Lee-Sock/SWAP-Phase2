@@ -25,7 +25,6 @@ $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
 $query->bindValue(1,$userid); //bind the parameters
 $query -> execute();
 $resultCartid = $query->fetchALL();
-//$cartid = $resultCartid['cartid'] ;
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
 };

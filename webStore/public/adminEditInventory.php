@@ -1,5 +1,6 @@
 <?php
 
+
 //connect to database
 require_once "config.php";
 require_once 'index2.php';

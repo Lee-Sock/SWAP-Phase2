@@ -21,7 +21,7 @@ require_once 'config.php';
         
         $query->execute(['', $ItemName, $Price, $Quantity, $Description, $Picture]);
         
-    } 
+    }
     
 ?>
 
@@ -125,3 +125,4 @@ box-sizing: border-box;
 </body>
 
 </html>
+

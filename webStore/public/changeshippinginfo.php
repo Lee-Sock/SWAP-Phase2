@@ -1,5 +1,9 @@
 <html>
 
+<head>
+<title>add shipping info</title>
+</head>
+
 <link rel="stylesheet" href="styles.css">
 
 
@@ -9,7 +13,6 @@
 require_once "updateshippinginfo.php";
 
 function printmessage($message) {
-    // echo "<script>console.log(\"$message\");</script>";
     echo "<pre>$message<br></pre>";
 }
 
@@ -20,14 +23,14 @@ function checkpost($input, $mandatory, $pattern) {
     
     if (empty($inputvalue)) {
         printmessage("$input field is empty");
-        if ($mandatory) return false;
-        else printmessage("but $input is not mandatory");
+        if ($mandatory) { return false; }
+        else { printmessage("but $input is not mandatory");}
     }
     if (strlen($pattern) > 0) {
         $ismatch=preg_match($pattern,$inputvalue);
         if (!$ismatch || $ismatch==0) {
             printmessage("$input field wrong format <br>");
-            if ($mandatory) return false;
+            if ($mandatory) { return false;}
         }
     }
     return true;
