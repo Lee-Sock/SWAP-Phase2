@@ -44,6 +44,7 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 		<th>itemname</th>
 		<th>itemquantity</th>
 		<th>price</th>
+		<th>picture</th>
 		<th>description</th>
 		<th>edit</th>
 		<th>delete</th>
@@ -63,6 +64,13 @@ $resultItems = $query->fetchALL(PDO::FETCH_ASSOC);
 			<td><?= isset($resultItemsInfo[0]['itemname']) ? $resultItemsInfo[0]['itemname'] : '' ?></td>
 			<td><?= isset($row['itemquantity']) ? $row['itemquantity'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
+			<td>
+                <?php
+                // Assuming the 'picture' column contains the path or URL to the image
+                $picture = isset($resultItemsInfo[0]['picture']) ? $resultItemsInfo[0]['picture'] : '';
+                echo "<img src='$picture' alt='picture' style='width: 50px; height: 50px;'>";
+                ?>
+            </td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
 			<td><a href='editCart.php?ID=<?= $row['id']?>'>Edit</a></td>
 			<td><a href='deleteCartItem.php?ID=<?= $row['id']?>'>delete</a></td>

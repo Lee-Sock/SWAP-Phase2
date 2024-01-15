@@ -51,6 +51,7 @@ $resultShippingInfo = $query->fetchALL();
 		<th>itemname</th>
 		<th>itemquantity</th>
 		<th>price</th>
+		<th>picture</th>
 		<th>description</th>
 	<tr>
 	<?php foreach ($resultItems as $row) { 
@@ -68,6 +69,13 @@ $resultShippingInfo = $query->fetchALL();
 			<td><?= isset($resultItemsInfo[0]['itemname']) ? $resultItemsInfo[0]['itemname'] : '' ?></td>
 			<td><?= isset($row['itemquantity']) ? $row['itemquantity'] : '' ?></td>
 			<td><?= isset($resultItemsInfo[0]['price']) ? $row['itemquantity'] * $resultItemsInfo[0]['price'] : '' ?></td>
+			<td>
+                <?php
+                // Assuming the 'picture' column contains the path or URL to the image
+                $picture = isset($resultItemsInfo[0]['picture']) ? $resultItemsInfo[0]['picture'] : '';
+                echo "<img src='$picture' alt='picture' style='width: 50px; height: 50px;'>";
+                ?>
+            </td>
 			<td><?= isset($resultItemsInfo[0]['description']) ? $resultItemsInfo[0]['description'] : '' ?></td>
 		</tr>
 	<?php } ?>
