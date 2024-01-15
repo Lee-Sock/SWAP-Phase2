@@ -57,8 +57,8 @@
 
 <nav class="topnav">
     <a href="usermain.php">Home</a>
-    <a href="#about">About</a>
-    <a href="checkcart.php">Cart</a>
+    
+
     <a href="checkout.php">checkout</a>
     <?php if (isset($row["username"])): ?>
         <div class="welcome">

@@ -43,7 +43,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: #f0f0f0 url(/finalphase2/SWAP-Phase2/webStore/public/inventoryimages/background3.jpg) no-repeat center center fixed;
+    background: #f0f0f0 url(finalphase2/SWAP-Phase2/webStore/public/inventoryimages/background3.jpg) no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     padding: 0;
