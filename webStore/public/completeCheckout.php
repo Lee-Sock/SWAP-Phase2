@@ -7,6 +7,7 @@ require_once "config.php";
 require_once 'index1.php';
 
 $useridToRetrieve =$userid;
+$success = isset($_GET['SUCCESS']) ? $_GET['SUCCESS'] : null;
 
 //getting c;artid
 $query= $con->prepare("SELECT * FROM cart WHERE userid = ?");
@@ -28,6 +29,14 @@ $query= $con->prepare("SELECT * FROM shippinginfo WHERE userid = ?");
 $query->bindValue(1,$userid); //bind the parameters
 $query -> execute();
 $resultShippingInfo = $query->fetchALL();
+
+if ($success == "1"){
+    echo "<script> alert ('Shipping Info Added'); </script>";
+}
+
+if ($success == "2"){
+    echo "<script> alert ('Shipping Info Updated'); </script>";
+}
 ?>
 
 
