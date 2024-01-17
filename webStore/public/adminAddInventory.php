@@ -115,7 +115,7 @@ box-sizing: border-box;
 </p>
 
 <input style="margin-block-start: 10px; margin-block-end: 10px; margin-inline-start: 190px" type="submit" name="insert_button" value="Insert Record">
-<a href='adminInventory.php'>go back</a>
+<a href="adminInventory.php">go back</a>
 
 </form>
 

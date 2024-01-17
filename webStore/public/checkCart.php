@@ -27,7 +27,7 @@ $query -> execute();
 $resultCartid = $query->fetchALL();
 foreach ($resultCartid as $row) {
     $cartid = $row["cartid"];
-};
+}
 
 //getting all items in cart
 $query= $con->prepare("SELECT * FROM cartitem WHERE cartid = ?");

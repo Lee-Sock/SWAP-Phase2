@@ -7,18 +7,18 @@ require_once 'index1.php';
 // Get the item ID from the URL parameter
 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
     
-// Fetch the cartitem details from the database for the specified ID    
+// Fetch the cartitem details from the database for the specified ID
 $query = $con->prepare("SELECT * FROM cartitem WHERE id = ?");
-$query->execute([$id]);    
+$query->execute([$id]);
 $cartItemDetails = $query->fetch(PDO::FETCH_ASSOC);
 // Handle the update operation
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_button'])) {              
-    $newQuantity = $_POST['quantity'];        
-    // Update the item details in the database        
-    $updateQuery = $con->prepare("UPDATE cartitem SET itemquantity = ? WHERE id = ?");     
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_button'])) {
+    $newQuantity = $_POST['quantity']
+    // Update the item details in the database
+    $updateQuery = $con->prepare("UPDATE cartitem SET itemquantity = ? WHERE id = ?");
     $updateQuery->execute([$newQuantity, $id]);
         
-    // Redirect to index.php after updating        
+    // Redirect to index.php after updating
     header("Location: checkout.php");
     exit();
 }
