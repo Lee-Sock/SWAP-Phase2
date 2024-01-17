@@ -97,6 +97,7 @@ function updateshippinginfo($address, $cardnumber, $expiry, $cvc)
     
     mysqli_close($con);
     printok("Closing connection");
+    header("Location: completeCheckout.php");
 }
 ?>
 
