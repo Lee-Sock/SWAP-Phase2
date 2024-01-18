@@ -1,64 +1,82 @@
 <?php
+// Include configuration and connect to the database
 require 'config.php';
 
+// Start the session
 session_start();
 
+// Check if the user is already logged in
 if (isset($_SESSION["login"]) && $_SESSION["login"]) {
     header("Location: usermain.php");
     exit();
 }
 
+// Check if there are login attempts and apply lockout mechanism
 if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
     $remainingTime = $_SESSION['lockout_time'] - time();
 
+    // Check remaining lockout time
     if ($remainingTime > 0) {
         $error_message = 'Too many failed login attempts. Please try again after ' . $remainingTime . ' seconds.';
         exit();
     } else {
+        // Reset login attempts and lockout time if the lockout period has passed
         unset($_SESSION['login_attempts']);
         unset($_SESSION['lockout_time']);
     }
 }
 
+// Handle form submission
 if (isset($_POST["submit"])) {
     $usernameemail = $_POST["usernameemail"];
     $password = $_POST["password"];
 
+    // Prepare and execute the SQL statement to fetch user details
     $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? OR email = ?");
     $stmt->bind_param("ss", $usernameemail, $usernameemail);
     $stmt->execute();
 
+    // Get the result set
     $result = $stmt->get_result();
 
+    // Check if user exists
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
+        // Verify the entered password
         if (password_verify($password, $row["password"])) {
+            // Set session variables for a successful login
             $_SESSION["login"] = true;
             $_SESSION["userid"] = $row["userid"];
+
+            // Reset login attempts and lockout time
             unset($_SESSION['login_attempts']);
             unset($_SESSION['lockout_time']);
+
+            // Redirect to the user main page
             header("Location: usermain.php");
             exit();
         } else {
+            // Increment login attempts and show error message for wrong password
             $_SESSION['login_attempts'] = isset($_SESSION['login_attempts']) ? $_SESSION['login_attempts'] + 1 : 1;
             $error_message = 'Wrong Password';
         }
     } else {
+        // Increment login attempts and show error message for unregistered user
         $_SESSION['login_attempts'] = isset($_SESSION['login_attempts']) ? $_SESSION['login_attempts'] + 1 : 1;
         $error_message = 'User Not Registered';
     }
 
-    // Lock the user out for 10 minutes after 5 failed attempts
+    // Lock the user out for 1 minute after 5 failed attempts
     if ($_SESSION['login_attempts'] >= 5) {
-        $_SESSION['lockout_time'] = time() + 60; // Lockout for 600 seconds (10 minutes)
-        $error_message = 'Too many failed login attempts. Account locked. Please try again after 10 minutes.';
+        $_SESSION['lockout_time'] = time() + 60; // Lockout for 60 seconds (1 minute)
+        $error_message = 'Too many failed login attempts. Account locked. Please try again after 1 minute.';
         exit();
     }
 }
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -92,4 +110,3 @@ if (isset($_POST["submit"])) {
     </div>
 </body>
 </html>
-
