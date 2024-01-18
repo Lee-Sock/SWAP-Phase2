@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2024 at 02:49 AM
+-- Generation Time: Jan 18, 2024 at 08:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -60,7 +60,8 @@ INSERT INTO `cart` (`cartid`, `userid`) VALUES
 (3, 3),
 (6, 6),
 (7, 7),
-(8, 8);
+(8, 8),
+(9, 9);
 
 -- --------------------------------------------------------
 
@@ -80,8 +81,7 @@ CREATE TABLE `cartitem` (
 --
 
 INSERT INTO `cartitem` (`id`, `cartid`, `itemid`, `itemquantity`) VALUES
-(1, 1, 1, 9),
-(4, 8, 3, 1);
+(1, 1, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -103,8 +103,8 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`itemid`, `itemname`, `price`, `quantity`, `description`, `picture`) VALUES
-(2, 'Test2', 200, 999, 'Item 2', '/SWAP-Phase2/webStore/public/inventoryimages/cpu.jpg'),
-(3, 'new', 3000, 1, 'descript', '/SWAP-Phase2/webStore/public/inventoryimages/harddisk.jpg');
+(2, 'cpu', 100, 699, 'cpu', '/SWAP-Phase2/webStore/public/inventoryimages/cpu.jpg'),
+(3, 'new', 3000, 999, 'descript', '/SWAP-Phase2/webStore/public/inventoryimages/harddisk.jpg');
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,9 @@ CREATE TABLE `shippinginfo` (
 
 INSERT INTO `shippinginfo` (`shippingid`, `userid`, `address`, `cardnumber`, `expiry`, `cvc`) VALUES
 (1, 1, '123', 123123, 123, 123),
-(6, 2, 'uyb', 87, 65, 75);
+(6, 2, 'uyb', 87, 65, 75),
+(8, 8, '12', 12, 121, 12),
+(10, 9, '1', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +152,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userid`, `email`, `password`, `username`, `firstname`, `lastname`, `phoneno`) VALUES
-(7, '9@9.com', '$2y$10$x3mswFkL6jhcrBbKXoteBOUuPQXeM4OleJzK4tDRLBaDoa1.Z2W2a', '9', 'lee', 'geng', 99999999),
 (8, '5@gmail.com', '$2y$10$78k4BZWuPFDwmPLuE8ywJO4miqMzPTHsNgzgt6c0STUI61GsaP4He', 'user1', 'lee', 'geng', 2);
 
 --
@@ -210,31 +211,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `cartitem`
 --
 ALTER TABLE `cartitem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `itemid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `itemid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shippinginfo`
 --
 ALTER TABLE `shippinginfo`
-  MODIFY `shippingid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `shippingid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
