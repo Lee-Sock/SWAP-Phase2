@@ -1,52 +1,3 @@
-<?php 
-// require_once 'config.php';
-
-// if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
-//     header("Location: addtocart.php");
-//     exit();
-// }
-// if(isset($_POST["submit"])){
-//     $firstname = $_POST["firstname"];
-//     $lastname = $_POST["lastname"];
-//     $username = $_POST["username"];
-//     $email = $_POST["email"];
-//     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-//     $phoneno = $_POST["phoneno"];
-
-//     $duplicate = mysqli_query($conn, "SELECT * FROM user
-//                                       WHERE username = '$username'
-//                                       OR email = '$email'
-//                                       OR phoneno = '$phoneno'");
-    
-//     if (mysqli_num_rows($duplicate) > 0) {
-//         echo
-//         "<script> alert('Username or Email or PhoneNo Is Already Taken'); </script>";
-        
-//     }
-//     else{
-//         $query = "INSERT INTO user VALUES('', '$email','$password','$username','$firstname','$lastname','$phoneno')";
-//         mysqli_query($conn,$query);
-//         $query2 = $con->prepare("SELECT * FROM user WHERE username = ?");
-//         $query2 ->bindValue(1,$username); //bind the parameters
-//         $query2 -> execute();
-//         $resultUserid = $query2->fetchALL();
-//         foreach ($resultUserid as $row){
-//             $query3= $conn->prepare("INSERT INTO `cart` (`cartid`, `userid`) VALUES (?,?)");
-//             $query3->bind_param('ss',$row["userid"], $row["userid"]); //bind the parameters
-//             if ($query3->execute()){ //execute query
-//                 echo "";
-//             }else{
-//                 echo "Error executing query.";
-//             }
-//         }
-//         echo
-//         "<script> alert('Registration Successful'); </script>";
-        
-//     }
-    
-   
-// }
-// ?>
 
 <?php
 require_once 'config.php';
@@ -75,7 +26,14 @@ if (isset($_POST["submit"])) {
     } else {
         $insertQuery = mysqli_prepare($conn, "INSERT INTO user (email, password, username, firstname, lastname, phoneno) VALUES (?, ?, ?, ?, ?, ?)");
         if ($insertQuery) {
-            mysqli_stmt_bind_param($insertQuery, "ssssss", $email, $password, $username, $firstname, $lastname, $phoneno);
+            mysqli_stmt_bind_param($insertQuery, "ssssss",
+                $email,
+                $password,
+                $username,
+                $firstname,
+                $lastname,
+                $phoneno
+                );
             
             if (mysqli_stmt_execute($insertQuery)) {
                 $userid = mysqli_insert_id($conn);
@@ -119,7 +77,7 @@ if (isset($_POST["submit"])) {
 	<head>
 		<meta charset="utf-8">
 		 <link rel="stylesheet" href="styles.css">
-		<title>Registration</title>
+		<title>Registration</title>   
 	</head>
 
 	<body style="font-family: Arial, sans-serif;

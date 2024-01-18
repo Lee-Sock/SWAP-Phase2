@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require_once 'config.php';
 
 session_start();
 
@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
