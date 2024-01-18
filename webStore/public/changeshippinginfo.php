@@ -1,7 +1,7 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<title>add shipping info</title>
+	<title>add shipping info</title>
 </head>
 
 <link rel="stylesheet" href="styles.css">
@@ -10,7 +10,7 @@
 
 <body>
 <?php
-require_once "updateshippinginfo.php";
+use "updateshippinginfo.php";
 
 function printmessage($message) {
     echo "<pre>$message<br></pre>";
@@ -55,5 +55,6 @@ $cvc=$_POST['cvc'];
 updateshippinginfo($address,$cardnumber,$expiry,$cvc);
 
 ?>
-</html>
 </body>
+</html>
+

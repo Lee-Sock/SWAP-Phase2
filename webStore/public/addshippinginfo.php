@@ -2,8 +2,8 @@
 
 function addshippinginfo($address,$cardnumber,$expiry,$cvc){
 
-    require_once "config.php";
-    require_once 'completeCheckout.php';
+    use "config.php";
+    use 'completeCheckout.php';
 
 
 
@@ -36,8 +36,9 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<title> add shipping </title>
+<head>
+	<title> add shipping </title>
+</head>
 
 <meta charset="utf-8">
 <link rel="stylesheet" href="styles.css">
