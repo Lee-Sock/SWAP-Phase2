@@ -4,7 +4,7 @@ require 'config.php';
 session_start();
 
 if (isset($_SESSION["login"]) && $_SESSION["login"]) {
-    header("Location: addtocart.php");
+    header("Location: usermain.php");
     exit();
 }
 
