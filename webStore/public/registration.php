@@ -1,5 +1,5 @@
 <?php 
-require 'config.php';
+require_once 'config.php';
 
 if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
     header("Location: addtocart.php");
@@ -12,7 +12,12 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $phoneno = $_POST["phoneno"];
-    $duplicate = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' OR email = '$email' OR phoneno = '$phoneno'");
+
+    $duplicate = mysqli_query($conn, "SELECT * FROM user
+                                      WHERE username = '$username'
+                                      OR email = '$email'
+                                      OR phoneno = '$phoneno'");
+    
     if (mysqli_num_rows($duplicate) > 0) {
         echo 
         "<script> alert('Username or Email or PhoneNo Is Already Taken'); </script>";
@@ -29,7 +34,7 @@ if(isset($_POST["submit"])){
             $query3= $conn->prepare("INSERT INTO `cart` (`cartid`, `userid`) VALUES (?,?)");
             $query3->bind_param('ss',$row["userid"], $row["userid"]); //bind the parameters
             if ($query3->execute()){ //execute query
-                echo "Query executed.";
+                echo "";
             }else{
                 echo "Error executing query.";
             }
@@ -52,14 +57,30 @@ if(isset($_POST["submit"])){
 		<title>Registration</title>		
 	</head>
 
+	<body style="font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;">
 	
-	<body style="font-family: Arial, sans-serif; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
 
-    <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+    
+    <div style="background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;">
+    
 
         <h1>Registration</h1>
+        
+           
 
-        <form action="" method="post" autocomplete="off" style="display: flex; flex-direction: column; align-items: center;">
+ 			<form action="" method="post" autocomplete="off"
+      				style="display: flex; flex-direction: column; align-items: center;">
+ 			
 
             <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 10px;">
                 <label for="firstname" style="width: 120px;">First Name:</label>

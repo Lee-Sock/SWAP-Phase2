@@ -1,4 +1,3 @@
-
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -60,12 +59,16 @@
     
 
     <a href="checkout.php">checkout</a>
+    
     <?php if (isset($row["username"])): ?>
         <div class="welcome">
             Welcome, <?php echo $row["username"];?>
         </div>
         <a href="logout.php">Logout</a>
+        <a href="updateuser.php">update account information</a>
     <?php endif; ?>
 </nav>
+
+
 
 

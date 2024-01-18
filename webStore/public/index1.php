@@ -39,7 +39,7 @@ function console_log($output, $with_script_tags = true) {
 </head>
 <body>
 
-<?php include('navbar.php'); ?>
+<?php include 'navbar.php'; ?>
 
 <!-- Your existing HTML content goes here -->
 
