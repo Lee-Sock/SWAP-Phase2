@@ -1,11 +1,11 @@
 <?php
-// Include the configuration file
+
 require_once 'config.php';
 
 // Start the session
 session_start();
 
-// Check if the admin is already logged in, redirect to adminview.php
+// Check if the admin is already logged in, redirect to index2.php
 if (isset($_SESSION["adminLogin"]) && $_SESSION["adminLogin"]) {
     header("Location: adminview.php");
     exit();
@@ -13,7 +13,6 @@ if (isset($_SESSION["adminLogin"]) && $_SESSION["adminLogin"]) {
 
 // Handle admin login form submission
 if (isset($_POST["submit"])) {
-    // Get admin ID and password from the form
     $adminId = $_POST["adminId"];
     $password = $_POST["password"];
 
@@ -21,29 +20,23 @@ if (isset($_POST["submit"])) {
     $query = $conn->prepare("SELECT * FROM admin WHERE adminId = ?");
     $query->bind_param("s", $adminId);
     $query->execute();
-    
-    // Get the result set
     $result = $query->get_result();
 
-    // Check if the admin exists
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Verify the entered password
         if ($password == $row["password"]) {
-            // Set session variables for a successful login
+            // Set session variables
             $_SESSION["adminLogin"] = true;
             $_SESSION["adminId"] = $row["adminId"];
 
-            // Redirect to the admin view page
+            // Redirect after successful login
             header("Location: adminview.php");
             exit();
         } else {
-            // Show error message for wrong password
             echo "<script>alert('Wrong Password');</script>";
         }
     } else {
-        // Show error message for unregistered admin
         echo "<script>alert('Admin Not Registered');</script>";
     }
 }
@@ -77,6 +70,5 @@ if (isset($_POST["submit"])) {
     </div>
 </body>
 </html>
-
 
 
