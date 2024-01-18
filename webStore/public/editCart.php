@@ -13,7 +13,7 @@ $query->execute([$id]);
 $cartItemDetails = $query->fetch(PDO::FETCH_ASSOC);
 // Handle the update operation
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_button'])) {
-    $newQuantity = $_POST['quantity']
+    $newQuantity = $_POST['quantity'];
     // Update the item details in the database
     $updateQuery = $con->prepare("UPDATE cartitem SET itemquantity = ? WHERE id = ?");
     $updateQuery->execute([$newQuantity, $id]);

@@ -25,7 +25,7 @@ if (isset($_POST["update"])) {
     $newFirstName = $_POST["newFirstName"];
     $newLastName = $_POST["newLastName"];
     $newPhoneNo = $_POST["newPhoneNo"];
-    $newPassword = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
+    $newPassword = $_POST["newPassword"];
 
     // Check if the new username is already in use
     $checkUsernameQuery = "SELECT * FROM user WHERE username = '$newUsername' AND userid != '$userid'";
@@ -35,8 +35,12 @@ if (isset($_POST["update"])) {
         $message = 'Username already in use. Please choose a different one.';
     } else {
         // Validate and update the user information
-        if (!empty($newUsername) && !empty($newFirstName) && !empty($newLastName) && !empty($newPhoneNo) && !empty($newPassword)) {
-            $updateQuery = "UPDATE user SET username = '$newUsername', firstname = '$newFirstName', lastname = '$newLastName', phoneno = '$newPhoneNo', password = '$newPassword' WHERE userid = '$userid'";
+        if (!empty($newUsername) && !empty($newFirstName) && !empty($newLastName) && !empty($newPhoneNo)) {
+            // Include password update only if provided
+            $passwordUpdate = !empty($newPassword) ? ", password = '" . password_hash($newPassword, PASSWORD_DEFAULT) . "'" : "";
+            
+            $updateQuery = "UPDATE user SET username = '$newUsername', firstname = '$newFirstName', lastname = '$newLastName', phoneno = '$newPhoneNo' $passwordUpdate WHERE userid = '$userid'";
+            
             if (mysqli_query($conn, $updateQuery)) {
                 $message = 'User information updated successfully.';
                 // Fetch updated user information
@@ -46,7 +50,7 @@ if (isset($_POST["update"])) {
                 $message = 'Error updating user information: ' . mysqli_error($conn);
             }
         } else {
-            $message = 'Username, first name, last name, phone number, and password cannot be empty.';
+            $message = 'Username, first name, last name, and phone number cannot be empty.';
         }
     }
 }
@@ -88,7 +92,7 @@ if (isset($_POST["update"])) {
             </div>
             <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 10px;">
                 <label for="newPassword" style="width: 120px;">New Password:</label>
-                <input type="password" name="newPassword" id="newPassword" required value="">
+                <input type="password" name="newPassword" id="newPassword" value="">
             </div>
             <button type="submit" name="update">Update</button>
         </form>
@@ -98,5 +102,6 @@ if (isset($_POST["update"])) {
     </div>
 </body>
 </html>
+
 
 
