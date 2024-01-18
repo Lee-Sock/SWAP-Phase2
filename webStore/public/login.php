@@ -8,6 +8,18 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]) {
     exit();
 }
 
+if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
+    $remainingTime = $_SESSION['lockout_time'] - time();
+
+    if ($remainingTime > 0) {
+        $error_message = 'Too many failed login attempts. Please try again after ' . $remainingTime . ' seconds.';
+        exit();
+    } else {
+        unset($_SESSION['login_attempts']);
+        unset($_SESSION['lockout_time']);
+    }
+}
+
 if (isset($_POST["submit"])) {
     $usernameemail = $_POST["usernameemail"];
     $password = $_POST["password"];
@@ -15,7 +27,7 @@ if (isset($_POST["submit"])) {
     $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? OR email = ?");
     $stmt->bind_param("ss", $usernameemail, $usernameemail);
     $stmt->execute();
-    
+
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
@@ -24,13 +36,24 @@ if (isset($_POST["submit"])) {
         if (password_verify($password, $row["password"])) {
             $_SESSION["login"] = true;
             $_SESSION["userid"] = $row["userid"];
+            unset($_SESSION['login_attempts']);
+            unset($_SESSION['lockout_time']);
             header("Location: usermain.php");
             exit();
         } else {
+            $_SESSION['login_attempts'] = isset($_SESSION['login_attempts']) ? $_SESSION['login_attempts'] + 1 : 1;
             $error_message = 'Wrong Password';
         }
     } else {
+        $_SESSION['login_attempts'] = isset($_SESSION['login_attempts']) ? $_SESSION['login_attempts'] + 1 : 1;
         $error_message = 'User Not Registered';
+    }
+
+    // Lock the user out for 10 minutes after 5 failed attempts
+    if ($_SESSION['login_attempts'] >= 5) {
+        $_SESSION['lockout_time'] = time() + 60; // Lockout for 600 seconds (10 minutes)
+        $error_message = 'Too many failed login attempts. Account locked. Please try again after 10 minutes.';
+        exit();
     }
 }
 ?>
@@ -69,7 +92,4 @@ if (isset($_POST["submit"])) {
     </div>
 </body>
 </html>
-
-
-
 
