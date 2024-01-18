@@ -10,7 +10,7 @@
 
 <body>
 <?php
-use "updateshippinginfo.php";
+require_once 'updateshippinginfo.php';
 
 function printmessage($message) {
     echo "<pre>$message<br></pre>";

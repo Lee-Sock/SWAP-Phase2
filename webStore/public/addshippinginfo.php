@@ -2,11 +2,10 @@
 
 function addshippinginfo($address,$cardnumber,$expiry,$cvc){
 
-    use "config.php";
-    use 'completeCheckout.php';
-
-
-
+    require "config.php";
+    require_once 'completeCheckout.php';
+    
+    $con = mysqli_connect("localhost", "root", "", "phase2");
     
     $userQuery = "SELECT userid FROM user WHERE userid = $useridToRetrieve";
     $userResult = mysqli_query($con, $userQuery);
