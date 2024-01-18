@@ -27,20 +27,25 @@ if (isset($_POST["update"])) {
     $newPhoneNo = $_POST["newPhoneNo"];
     $newPassword = $_POST["newPassword"];
 
-    // Check if the new username is already in use
-    $checkUsernameQuery = "SELECT * FROM user WHERE username = '$newUsername' AND userid != '$userid'";
-    $checkUsernameResult = mysqli_query($conn, $checkUsernameQuery);
+    // Check if the new information is different from the existing information
+    if (
+        $newUsername !== $row['username'] ||
+        $newFirstName !== $row['firstname'] ||
+        $newLastName !== $row['lastname'] ||
+        $newPhoneNo !== $row['phoneno']
+    ) {
+        // Check if the new username is already in use
+        $checkUsernameQuery = "SELECT * FROM user WHERE username = '$newUsername' AND userid != '$userid'";
+        $checkUsernameResult = mysqli_query($conn, $checkUsernameQuery);
 
-    if (mysqli_num_rows($checkUsernameResult) > 0) {
-        $message = 'Username already in use. Please choose a different one.';
-    } else {
-        // Validate and update the user information
-        if (!empty($newUsername) && !empty($newFirstName) && !empty($newLastName) && !empty($newPhoneNo)) {
-            // Include password update only if provided
+        if (mysqli_num_rows($checkUsernameResult) > 0) {
+            $message = 'Username already in use. Please choose a different one.';
+        } else {
+            // Validate and update the user information
             $passwordUpdate = !empty($newPassword) ? ", password = '" . password_hash($newPassword, PASSWORD_DEFAULT) . "'" : "";
-            
+
             $updateQuery = "UPDATE user SET username = '$newUsername', firstname = '$newFirstName', lastname = '$newLastName', phoneno = '$newPhoneNo' $passwordUpdate WHERE userid = '$userid'";
-            
+
             if (mysqli_query($conn, $updateQuery)) {
                 $message = 'User information updated successfully.';
                 // Fetch updated user information
@@ -49,9 +54,9 @@ if (isset($_POST["update"])) {
             } else {
                 $message = 'Error updating user information: ' . mysqli_error($conn);
             }
-        } else {
-            $message = 'Username, first name, last name, and phone number cannot be empty.';
         }
+    } else {
+        $message = 'No changes made to the user information.';
     }
 }
 ?>
@@ -102,6 +107,5 @@ if (isset($_POST["update"])) {
     </div>
 </body>
 </html>
-
 
 
