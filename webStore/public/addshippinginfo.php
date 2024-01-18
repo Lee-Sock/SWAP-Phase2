@@ -2,7 +2,7 @@
 
 function addshippinginfo($address,$cardnumber,$expiry,$cvc){
 
-    require "config.php";
+    require_once "config.php";
     require_once 'completeCheckout.php';
     
     $con = mysqli_connect("localhost", "root", "", "phase2");
@@ -19,14 +19,8 @@ function addshippinginfo($address,$cardnumber,$expiry,$cvc){
     $query="INSERT INTO shippinginfo (userid,address,cardnumber,expiry,cvc)
         VALUES ('$useridToRetrieve', '$address', '$cardnumber', '$expiry', '$cvc')";
     $result=mysqli_query($con,$query);
-    if (!$result) {
-        printerror("Selecting $db_database",$con);
-        die();
-    }
-    else { printok($query); }
 
     mysqli_close($con);
-    printok("Closing connection");
     header("Location: completeCheckout.php?SUCCESS=1");
     
 }
